@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
-import { SERVICE_BY_SLUG, SERVICES } from "@/lib/site";
+import { SERVICE_BY_SLUG, SERVICES, type Service } from "@/lib/site";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { CTASection } from "@/components/site/CTASection";
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetail() {
-  const s = Route.useLoaderData();
+  const s = Route.useLoaderData() as Service;
   return (
     <>
       <PageHero eyebrow="Service" title={s.title} subtitle={s.description}>

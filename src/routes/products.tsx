@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import { Package, Box, Boxes, Scissors, Tape, Shield, Ruler, Sofa } from "lucide-react";
+import { Package, Box, Boxes, Scissors, Wrench, Shield, Ruler, Sofa } from "lucide-react";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -27,7 +27,7 @@ const PRODUCTS = [
   { icon: Package, title: "Book & Wine Cartons", desc: "Heavy-duty small boxes for dense items like books, vinyl and bottles." },
   { icon: Shield, title: "Bubble Wrap Rolls", desc: "Premium bubble wrap for glassware, ceramics, screens and artwork." },
   { icon: Scissors, title: "Acid-Free Tissue", desc: "For fine china, silverware and delicate fabrics." },
-  { icon: Tape, title: "Packing Tape & Dispensers", desc: "Low-noise tape and ergonomic dispensers for fast, secure boxing." },
+  { icon: Wrench, title: "Packing Tape & Dispensers", desc: "Low-noise tape and ergonomic dispensers for fast, secure boxing." },
   { icon: Sofa, title: "Sofa & Mattress Covers", desc: "Fitted covers to keep upholstery clean in transit and in storage." },
   { icon: Ruler, title: "Floor & Corner Protection", desc: "Floor runners and corner guards to protect your home during the move." },
 ];
