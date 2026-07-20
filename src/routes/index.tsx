@@ -1,24 +1,488 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  ArrowRight,
+  ShieldCheck,
+  Users,
+  Clock,
+  Star,
+  CheckCircle2,
+  Mail,
+  Phone,
+  MapPin,
+  Truck,
+  PackageCheck,
+  Home as HomeIcon,
+  Sparkles,
+} from "lucide-react";
+import truckImg from "@/assets/hero-truck.jpg";
+import { SERVICES, STORAGE_SERVICE, SITE } from "@/lib/site";
+import { Reveal } from "@/components/site/Reveal";
+import { CTASection } from "@/components/site/CTASection";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Aspire Removals & Transport | Reliable UK House & Office Movers" },
+      {
+        name: "description",
+        content:
+          "Fully-insured UK removals and transport. House moves, office relocation, packing services and furniture delivery — trust us to take you home.",
+      },
+      { property: "og:title", content: "Aspire Removals & Transport | Reliable UK Movers" },
+      {
+        property: "og:description",
+        content:
+          "Reliable, premium removals across the UK — house moves, office relocation, packing and furniture transport.",
+      },
+      { property: "og:url", content: "/" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const TRUST = [
+  { icon: ShieldCheck, label: "Fully Insured" },
+  { icon: Users, label: "Professional Team" },
+  { icon: Clock, label: "Reliable Service" },
+  { icon: Star, label: "5-Star Rated" },
+];
+
+const REASONS = [
+  {
+    icon: Users,
+    title: "Professional movers",
+    text: "Uniformed, DBS-checked crews trained in careful handling, disassembly and reassembly.",
+  },
+  {
+    icon: Sparkles,
+    title: "Affordable pricing",
+    text: "Transparent fixed quotes with no hidden fees — you always know what you're paying for.",
+  },
+  {
+    icon: Truck,
+    title: "Safe transportation",
+    text: "Modern GPS-tracked fleet with air-ride suspension and full protective materials.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Fully insured",
+    text: "Comprehensive Goods-in-Transit and Public Liability cover on every single job.",
+  },
+  {
+    icon: Clock,
+    title: "Reliable scheduling",
+    text: "Punctual arrivals, honest timelines and same-day updates from start to finish.",
+  },
+  {
+    icon: Star,
+    title: "Excellent customer service",
+    text: "A dedicated move coordinator from first call through to final placement.",
+  },
+];
+
+const STEPS = [
+  { icon: PackageCheck, title: "Book a Quote", text: "Share your details online or by phone for a same-day fixed price." },
+  { icon: Sparkles, title: "Wrapping & Packing", text: "We arrive with premium materials to protect everything you own." },
+  { icon: Truck, title: "Moving", text: "Careful loading, GPS-tracked transit and continuous communication." },
+  { icon: HomeIcon, title: "Offload & Unpack", text: "Furniture placed room-by-room, reassembled and ready to enjoy." },
+];
+
+const REVIEWS = [
+  {
+    name: "Sarah Whitmore",
+    role: "Homeowner, Islington",
+    quote:
+      "From the first survey to the final box, the Aspire team were meticulous. They wrapped everything twice — nothing so much as a scratch.",
+  },
+  {
+    name: "David Okafor",
+    role: "Operations Director, Studio Nine",
+    quote:
+      "Our entire office moved over one weekend and the team had us live again by 8am Monday. Genuinely impressive.",
+  },
+  {
+    name: "Priya Sharma",
+    role: "Homeowner, Manchester",
+    quote:
+      "Polite, punctual and fast. They took the stress out of what I thought would be the worst weekend of the year.",
+  },
+];
+
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+    <>
+      {/* HERO */}
+      <section className="relative gradient-brand overflow-hidden">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-40 -left-32 h-[36rem] w-[36rem] rounded-full bg-secondary/40 blur-3xl animate-float-blob" />
+          <div className="absolute top-1/3 -right-20 h-[28rem] w-[28rem] rounded-full bg-accent/25 blur-3xl animate-float-blob" style={{ animationDelay: "-5s" }} />
+          <svg
+            className="absolute bottom-0 left-0 w-full text-background"
+            viewBox="0 0 1440 120"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <path fill="currentColor" d="M0,64L80,74.7C160,85,320,107,480,101.3C640,96,800,64,960,53.3C1120,43,1280,53,1360,58.7L1440,64L1440,120L0,120Z" />
+          </svg>
+        </div>
+
+        <div className="container-page relative pt-36 md:pt-40 pb-28 md:pb-40">
+          <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] items-center">
+            <div className="text-white">
+              <Reveal>
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-4 py-1.5 text-xs font-medium ring-1 ring-white/20">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  UK-wide removals & transport
+                </span>
+              </Reveal>
+              <Reveal delay={80}>
+                <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight">
+                  Reliable Moving <br className="hidden sm:block" />
+                  Services Across the UK
+                </h1>
+              </Reveal>
+              <Reveal delay={160}>
+                <p className="mt-6 text-lg text-white/85 max-w-xl">
+                  Aspire Removals & Transport delivers residential and commercial moves, expert
+                  packing and nationwide transport — designed to make your move calm, careful and
+                  completely stress-free.
+                </p>
+              </Reveal>
+              <Reveal delay={240} className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  to="/quote"
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground btn-glow-accent"
+                >
+                  Get a Quote <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur ring-1 ring-white/25 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/15 transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </Reveal>
+              <Reveal delay={320}>
+                <ul className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {TRUST.map(({ icon: Icon, label }) => (
+                    <li key={label} className="flex items-center gap-2 text-sm text-white/85">
+                      <Icon className="h-4 w-4 text-accent" aria-hidden />
+                      {label}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+
+            <Reveal direction="right" delay={200} className="relative">
+              <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/15 shadow-lift">
+                <img
+                  src={truckImg}
+                  alt="Aspire Removals & Transport branded moving truck outside a modern UK home"
+                  width={1600}
+                  height={1200}
+                  className="w-full h-auto object-cover"
+                  fetchPriority="high"
+                />
+              </div>
+              <div className="hidden md:flex absolute -bottom-6 -left-6 items-center gap-3 rounded-2xl bg-white/95 backdrop-blur px-5 py-4 shadow-lift">
+                <div className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-navy">Fully insured moves</p>
+                  <p className="text-xs text-muted-foreground">GIT & public liability</p>
+                </div>
+              </div>
+              <div className="hidden md:flex absolute -top-5 -right-5 items-center gap-3 rounded-2xl bg-navy text-white px-5 py-4 shadow-lift">
+                <Star className="h-5 w-5 text-accent" />
+                <div>
+                  <p className="text-sm font-semibold">4.9 / 5 rating</p>
+                  <p className="text-xs text-white/70">from 500+ moves</p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES OVERVIEW */}
+      <section className="container-page mt-24">
+        <div className="max-w-2xl">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">What we do</p>
+            <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl text-navy">
+              A complete range of <span className="text-gradient-brand">moving services</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              From single-item transport to full-house relocations, our specialists cover every
+              part of your move under one roof.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[...SERVICES, { ...STORAGE_SERVICE, short: "Clean, secure short and long-term storage.", slug: "storage" as const }].slice(0, 6).map((s, i) => {
+            const Icon = s.icon;
+            const isStorage = s.slug === "storage";
+            const linkProps = isStorage
+              ? { to: "/contact" as const }
+              : ({ to: "/services/$slug" as const, params: { slug: s.slug } } as const);
+            return (
+              <Reveal key={s.slug} delay={i * 60}>
+                <article className="group h-full flex flex-col rounded-2xl bg-card border border-border p-7 card-lift shadow-soft">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl gradient-brand-soft text-primary">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 text-xl font-semibold text-navy">{s.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground flex-1">{s.short}</p>
+                  <Link
+                    {...linkProps}
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2 transition-all"
+                  >
+                    Read more <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* WHY CHOOSE US */}
+      <section className="mt-28 bg-section py-24">
+        <div className="container-page">
+          <div className="grid lg:grid-cols-[1fr_1.4fr] gap-14">
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Why Aspire</p>
+              <h2 className="mt-3 text-3xl md:text-4xl text-navy">
+                Trusted for the moments that matter most
+              </h2>
+              <p className="mt-5 text-muted-foreground text-lg">
+                We've earned our reputation by treating every home and office like it's our own.
+                Here's what makes moving with us different.
+              </p>
+              <Link
+                to="/about"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground btn-glow"
+              >
+                Learn about us <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Reveal>
+            <div className="grid sm:grid-cols-2 gap-5">
+              {REASONS.map(({ icon: Icon, title, text }, i) => (
+                <Reveal key={title} delay={i * 50}>
+                  <div className="h-full rounded-2xl bg-card border border-border p-6 card-lift shadow-soft">
+                    <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mt-4 text-base font-semibold text-navy">{title}</h3>
+                    <p className="mt-1.5 text-sm text-muted-foreground">{text}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS TIMELINE */}
+      <section className="container-page mt-28">
+        <div className="max-w-2xl">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Our process</p>
+            <h2 className="mt-3 text-3xl md:text-4xl text-navy">A simple four-step move</h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              Every Aspire move follows a proven process designed to eliminate surprises and keep
+              you in control from start to finish.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="relative mt-14">
+          <div className="hidden lg:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+          <div className="grid gap-8 lg:grid-cols-4">
+            {STEPS.map(({ icon: Icon, title, text }, i) => (
+              <Reveal key={title} delay={i * 80}>
+                <div className="relative rounded-2xl bg-card border border-border p-7 card-lift shadow-soft">
+                  <div className="grid h-16 w-16 place-items-center rounded-2xl gradient-brand text-white shadow-lift">
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-accent">Step {i + 1}</p>
+                  <h3 className="mt-1 text-lg font-semibold text-navy">{title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section className="mt-28 bg-section py-24">
+        <div className="container-page">
+          <div className="max-w-2xl">
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Customer stories</p>
+              <h2 className="mt-3 text-3xl md:text-4xl text-navy">
+                Loved by families and businesses across the UK
+              </h2>
+            </Reveal>
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {REVIEWS.map((r, i) => (
+              <Reveal key={r.name} delay={i * 80}>
+                <figure className="h-full rounded-2xl bg-card border border-border p-7 card-lift shadow-soft">
+                  <div className="flex gap-0.5 text-accent">
+                    {Array.from({ length: 5 }).map((_, k) => (
+                      <Star key={k} className="h-4 w-4 fill-current" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 text-navy leading-relaxed">"{r.quote}"</blockquote>
+                  <figcaption className="mt-6 flex items-center gap-3">
+                    <div
+                      className="grid h-11 w-11 place-items-center rounded-full text-white font-semibold"
+                      style={{ background: "linear-gradient(135deg,#005F86,#0E8FB3)" }}
+                      aria-hidden
+                    >
+                      {r.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-navy">{r.name}</p>
+                      <p className="text-xs text-muted-foreground">{r.role}</p>
+                    </div>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CTASection />
+
+      {/* CONTACT PREVIEW */}
+      <section className="container-page my-24">
+        <div className="grid lg:grid-cols-2 gap-10 items-start">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Get in touch</p>
+            <h2 className="mt-3 text-3xl md:text-4xl text-navy">Talk to a real person</h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              Prefer a quick chat? Our move coordinators are on hand seven days a week to help
+              plan your move.
+            </p>
+            <ul className="mt-8 space-y-4">
+              <li className="flex gap-4">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary shrink-0">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-navy">Call us</p>
+                  <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="text-muted-foreground hover:text-primary">
+                    {SITE.phone}
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary shrink-0">
+                  <Mail className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-navy">Email us</p>
+                  <a href={`mailto:${SITE.email}`} className="text-muted-foreground hover:text-primary">
+                    {SITE.email}
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary shrink-0">
+                  <MapPin className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-navy">Head office</p>
+                  <p className="text-muted-foreground">{SITE.address}</p>
+                </div>
+              </li>
+            </ul>
+            <div className="mt-8 rounded-2xl bg-section border border-border p-5">
+              <p className="text-sm font-semibold text-navy">Business hours</p>
+              <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+                {SITE.hours.map((h) => (
+                  <li key={h.d} className="flex justify-between">
+                    <span>{h.d}</span>
+                    <span className="font-medium text-navy">{h.h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          <Reveal direction="right">
+            <QuickContactForm />
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function QuickContactForm() {
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        const f = e.currentTarget as HTMLFormElement;
+        f.reset();
+        alert("Thanks — we'll be in touch within one business hour.");
+      }}
+      className="rounded-3xl bg-card border border-border p-7 md:p-9 shadow-soft"
+      aria-label="Quick contact form"
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+      <h3 className="text-xl font-semibold text-navy">Send us a message</h3>
+      <p className="mt-1 text-sm text-muted-foreground">We reply within one business hour.</p>
+      <div className="mt-6 grid gap-4">
+        <Field label="Full name" name="name" required />
+        <Field label="Email" name="email" type="email" required />
+        <Field label="Phone" name="phone" type="tel" />
+        <Field label="How can we help?" name="message" as="textarea" required />
+      </div>
+      <button
+        type="submit"
+        className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground btn-glow"
+      >
+        Send message <CheckCircle2 className="h-4 w-4" />
+      </button>
+    </form>
+  );
+}
+
+function Field({
+  label,
+  name,
+  type = "text",
+  as,
+  required,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  as?: "textarea";
+  required?: boolean;
+}) {
+  const cls =
+    "mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors";
+  return (
+    <label className="block text-sm font-medium text-navy">
+      {label} {required && <span className="text-accent">*</span>}
+      {as === "textarea" ? (
+        <textarea name={name} required={required} rows={4} className={cls} />
+      ) : (
+        <input name={name} type={type} required={required} className={cls} />
+      )}
+    </label>
   );
 }
