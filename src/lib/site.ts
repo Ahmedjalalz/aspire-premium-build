@@ -12,9 +12,9 @@ export const SITE = {
   name: "Aspire Removals & Transport",
   short: "Aspire Removals",
   tagline: "Trust Us Take You Home",
-  phone: "+44 20 3900 0000",
+  phone: "07493 732371",
   email: "hello@aspireremovals.co.uk",
-  address: "12 Kingsway, London, WC2B 6UN, United Kingdom",
+  address: "167 Henley Avenue, Sutton, SM3 9SD",
   hours: [
     { d: "Monday – Friday", h: "07:00 – 19:00" },
     { d: "Saturday", h: "08:00 – 17:00" },

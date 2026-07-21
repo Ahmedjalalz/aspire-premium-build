@@ -1,9 +1,8 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
-import { SITE } from "@/lib/site";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -41,9 +40,9 @@ export function Navbar() {
           : "bg-transparent",
       )}
     >
-      <div className="container-page flex h-[72px] items-center justify-between gap-4">
+      <div className="container-page flex h-[88px] items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2 shrink-0" aria-label="Aspire Removals home">
-          <Logo className="h-9 md:h-10 w-auto" invert={!solid} />
+          <Logo className="h-14 md:h-16 w-auto" invert={!solid} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
@@ -69,21 +68,11 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-            className={cn(
-              "hidden md:inline-flex items-center gap-2 text-sm font-medium transition-colors",
-              solid ? "text-navy hover:text-primary" : "text-white/90 hover:text-white",
-            )}
-          >
-            <Phone className="h-4 w-4" aria-hidden />
-            <span>{SITE.phone}</span>
-          </a>
           <Link
-            to="/quote"
+            to="/contact"
             className="hidden sm:inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground btn-glow-accent"
           >
-            Get Quote
+            Contact Us
           </Link>
           <button
             type="button"
@@ -115,10 +104,10 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              to="/quote"
+              to="/contact"
               className="mt-3 inline-flex justify-center rounded-full bg-accent px-5 py-3 text-base font-semibold text-accent-foreground"
             >
-              Get Quote
+              Contact Us
             </Link>
           </nav>
         </div>
