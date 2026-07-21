@@ -1,7 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import { Package, Box, Boxes, Scissors, Wrench, Shield, Ruler, Sofa } from "lucide-react";
+import boxesImg from "@/assets/products/boxes.jpg";
+import wardrobeImg from "@/assets/products/wardrobe.jpg";
+import booksImg from "@/assets/products/books.jpg";
+import bubbleImg from "@/assets/products/bubble.jpg";
+import tissueImg from "@/assets/products/tissue.jpg";
+import tapeImg from "@/assets/products/tape.jpg";
+import coversImg from "@/assets/products/covers.jpg";
+import floorImg from "@/assets/products/floor.jpg";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -22,14 +29,14 @@ export const Route = createFileRoute("/products")({
 });
 
 const PRODUCTS = [
-  { icon: Box, title: "Standard Moving Boxes", desc: "Double-wall cartons in small, medium and large — the everyday workhorse." },
-  { icon: Boxes, title: "Wardrobe Boxes", desc: "Tall boxes with a built-in hanging rail to move clothes on their hangers." },
-  { icon: Package, title: "Book & Wine Cartons", desc: "Heavy-duty small boxes for dense items like books, vinyl and bottles." },
-  { icon: Shield, title: "Bubble Wrap Rolls", desc: "Premium bubble wrap for glassware, ceramics, screens and artwork." },
-  { icon: Scissors, title: "Acid-Free Tissue", desc: "For fine china, silverware and delicate fabrics." },
-  { icon: Wrench, title: "Packing Tape & Dispensers", desc: "Low-noise tape and ergonomic dispensers for fast, secure boxing." },
-  { icon: Sofa, title: "Sofa & Mattress Covers", desc: "Fitted covers to keep upholstery clean in transit and in storage." },
-  { icon: Ruler, title: "Floor & Corner Protection", desc: "Floor runners and corner guards to protect your home during the move." },
+  { img: boxesImg, title: "Standard Moving Boxes", desc: "Double-wall cartons in small, medium and large — the everyday workhorse." },
+  { img: wardrobeImg, title: "Wardrobe Boxes", desc: "Tall boxes with a built-in hanging rail to move clothes on their hangers." },
+  { img: booksImg, title: "Book & Wine Cartons", desc: "Heavy-duty small boxes for dense items like books, vinyl and bottles." },
+  { img: bubbleImg, title: "Bubble Wrap Rolls", desc: "Premium bubble wrap for glassware, ceramics, screens and artwork." },
+  { img: tissueImg, title: "Acid-Free Tissue", desc: "For fine china, silverware and delicate fabrics." },
+  { img: tapeImg, title: "Packing Tape & Dispensers", desc: "Low-noise tape and ergonomic dispensers for fast, secure boxing." },
+  { img: coversImg, title: "Sofa & Mattress Covers", desc: "Fitted covers to keep upholstery clean in transit and in storage." },
+  { img: floorImg, title: "Floor & Corner Protection", desc: "Floor runners and corner guards to protect your home during the move." },
 ];
 
 function Products() {
@@ -43,30 +50,32 @@ function Products() {
 
       <section className="container-page mt-20">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {PRODUCTS.map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <Reveal key={p.title} delay={i * 40}>
-                <article className="h-full flex flex-col rounded-2xl bg-card border border-border overflow-hidden card-lift shadow-soft">
-                  <div className="aspect-[4/3] gradient-brand-soft grid place-items-center">
-                    <div className="grid h-16 w-16 place-items-center rounded-2xl bg-white text-primary shadow-soft">
-                      <Icon className="h-7 w-7" />
-                    </div>
-                  </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-base font-semibold text-navy">{p.title}</h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground flex-1">{p.desc}</p>
-                    <Link
-                      to="/quote"
-                      className="mt-5 inline-flex items-center justify-center rounded-full bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground btn-glow"
-                    >
-                      Request Quote
-                    </Link>
-                  </div>
-                </article>
-              </Reveal>
-            );
-          })}
+          {PRODUCTS.map((p, i) => (
+            <Reveal key={p.title} delay={i * 40}>
+              <article className="h-full flex flex-col rounded-2xl bg-card border border-border overflow-hidden card-lift shadow-soft">
+                <div className="aspect-[4/3] bg-white overflow-hidden">
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    width={1024}
+                    height={1024}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-base font-semibold text-navy">{p.title}</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground flex-1">{p.desc}</p>
+                  <Link
+                    to="/quote"
+                    className="mt-5 inline-flex items-center justify-center rounded-full bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground btn-glow"
+                  >
+                    Request Quote
+                  </Link>
+                </div>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </section>
 
