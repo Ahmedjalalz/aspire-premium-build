@@ -175,7 +175,7 @@ function Home() {
           >
             <path
               d="M0,70 C240,110 480,10 720,40 C960,70 1200,110 1440,50 L1440,110 L0,110 Z"
-              fill="hsl(var(--background))"
+              fill="var(--color-background)"
             />
           </svg>
         </div>
