@@ -55,7 +55,7 @@
   --popover: oklch(100% 0 0);
   --popover-foreground: oklch(24% 0.03 250);
 
-  --primary: oklch(45% 0.09 235);                 /* #005F86 */
+  --primary: #062A42;                             /* Deep navy */
   --primary-foreground: oklch(100% 0 0);
   --secondary: oklch(60% 0.11 225);               /* #0E8FB3 */
   --secondary-foreground: oklch(100% 0 0);
