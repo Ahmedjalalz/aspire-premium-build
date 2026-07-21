@@ -113,99 +113,57 @@ function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative gradient-brand overflow-hidden">
+      <section className="relative overflow-hidden bg-[#062A42]">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-40 -left-32 h-[36rem] w-[36rem] rounded-full bg-secondary/40 blur-3xl animate-float-blob" />
-          <div className="absolute top-1/3 -right-20 h-[28rem] w-[28rem] rounded-full bg-accent/25 blur-3xl animate-float-blob" style={{ animationDelay: "-5s" }} />
-          <svg
-            className="absolute bottom-0 left-0 w-full text-background"
-            viewBox="0 0 1440 120"
-            preserveAspectRatio="none"
-            aria-hidden
-          >
-            <path fill="currentColor" d="M0,64L80,74.7C160,85,320,107,480,101.3C640,96,800,64,960,53.3C1120,43,1280,53,1360,58.7L1440,64L1440,120L0,120Z" />
-          </svg>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_40%,rgba(14,74,107,0.55),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_60%,rgba(4,20,35,0.7),transparent_65%)]" />
         </div>
 
-        <div className="container-page relative pt-36 md:pt-40 pb-28 md:pb-40">
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] items-center">
+        <div className="container-page relative pt-32 md:pt-36 pb-20 md:pb-28">
+          <div className="grid gap-10 lg:grid-cols-2 items-center">
             <div className="text-white">
               <Reveal>
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur px-4 py-1.5 text-xs font-medium ring-1 ring-white/20">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  UK-wide removals & transport
-                </span>
-              </Reveal>
-              <Reveal delay={80}>
-                <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight">
-                  Reliable Moving <br className="hidden sm:block" />
-                  Services Across the UK
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight">
+                  Trust Us <br />
+                  Take You Home
                 </h1>
               </Reveal>
-              <Reveal delay={160}>
-                <p className="mt-6 text-lg text-white/85 max-w-xl">
-                  Aspire Removals & Transport delivers residential and commercial moves, expert
-                  packing and nationwide transport — designed to make your move calm, careful and
-                  completely stress-free.
+              <Reveal delay={120}>
+                <p className="mt-6 text-lg md:text-xl text-white/75 max-w-lg leading-relaxed">
+                  Reliable removals and transport services designed to make your move
+                  stress-free and effortless.
                 </p>
               </Reveal>
-              <Reveal delay={240} className="mt-8 flex flex-wrap gap-3">
+              <Reveal delay={220} className="mt-10 flex flex-wrap gap-4">
+                <Link
+                  to="/services"
+                  className="inline-flex items-center justify-center rounded-md bg-[#0E4A6B] hover:bg-[#125b83] px-8 py-3.5 text-sm font-semibold text-white transition-colors shadow-lift"
+                >
+                  Our Services
+                </Link>
                 <Link
                   to="/quote"
-                  className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-accent-foreground btn-glow-accent"
+                  className="inline-flex items-center justify-center rounded-md border border-white/60 hover:border-white bg-transparent px-8 py-3.5 text-sm font-semibold text-white hover:bg-white/5 transition-colors"
                 >
-                  Get a Quote <ArrowRight className="h-4 w-4" />
+                  Get a Quote
                 </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur ring-1 ring-white/25 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/15 transition-colors"
-                >
-                  Contact Us
-                </Link>
-              </Reveal>
-              <Reveal delay={320}>
-                <ul className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {TRUST.map(({ icon: Icon, label }) => (
-                    <li key={label} className="flex items-center gap-2 text-sm text-white/85">
-                      <Icon className="h-4 w-4 text-accent" aria-hidden />
-                      {label}
-                    </li>
-                  ))}
-                </ul>
               </Reveal>
             </div>
 
             <Reveal direction="right" delay={200} className="relative">
-              <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/15 shadow-lift">
-                <img
-                  src={truckImg}
-                  alt="Aspire Removals & Transport branded moving truck outside a modern UK home"
-                  width={1600}
-                  height={1200}
-                  className="w-full h-auto object-cover"
-                  fetchPriority="high"
-                />
-              </div>
-              <div className="hidden md:flex absolute -bottom-6 -left-6 items-center gap-3 rounded-2xl bg-white/95 backdrop-blur px-5 py-4 shadow-lift">
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground">
-                  <ShieldCheck className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-navy">Fully insured moves</p>
-                  <p className="text-xs text-muted-foreground">GIT & public liability</p>
-                </div>
-              </div>
-              <div className="hidden md:flex absolute -top-5 -right-5 items-center gap-3 rounded-2xl bg-navy text-white px-5 py-4 shadow-lift">
-                <Star className="h-5 w-5 text-accent" />
-                <div>
-                  <p className="text-sm font-semibold">4.9 / 5 rating</p>
-                  <p className="text-xs text-white/70">from 500+ moves</p>
-                </div>
-              </div>
+              <img
+                src={truckImg}
+                alt="Aspire Removals & Transport branded moving truck"
+                width={1600}
+                height={1200}
+                className="w-full h-auto object-contain drop-shadow-2xl"
+                fetchPriority="high"
+              />
             </Reveal>
           </div>
         </div>
       </section>
+
 
       {/* SERVICES OVERVIEW */}
       <section className="container-page mt-24">

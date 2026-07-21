@@ -55,7 +55,7 @@
   --popover: oklch(100% 0 0);
   --popover-foreground: oklch(24% 0.03 250);
 
-  --primary: oklch(45% 0.09 235);                 /* #005F86 */
+  --primary: #062A42;                             /* Deep navy */
   --primary-foreground: oklch(100% 0 0);
   --secondary: oklch(60% 0.11 225);               /* #0E8FB3 */
   --secondary-foreground: oklch(100% 0 0);
@@ -100,15 +100,15 @@
 }
 
 @utility gradient-brand {
-  background-image: linear-gradient(135deg, #005F86 0%, #0E8FB3 55%, #1E2C3B 100%);
+  background-image: linear-gradient(135deg, #062A42 0%, #0A3A57 55%, #041825 100%);
 }
 
 @utility gradient-brand-soft {
-  background-image: linear-gradient(135deg, oklch(45% 0.09 235 / 0.06), oklch(60% 0.11 225 / 0.05));
+  background-image: linear-gradient(135deg, rgb(6 42 66 / 0.06), rgb(14 74 107 / 0.05));
 }
 
 @utility text-gradient-brand {
-  background-image: linear-gradient(135deg, #005F86, #0E8FB3);
+  background-image: linear-gradient(135deg, #062A42, #0E4A6B);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
