@@ -119,7 +119,7 @@ function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_60%,rgba(4,20,35,0.7),transparent_65%)]" />
         </div>
 
-        <div className="container-page relative pt-32 md:pt-36 pb-20 md:pb-28">
+        <div className="container-page relative pt-32 md:pt-36 pb-24 md:pb-32">
           <div className="grid gap-10 lg:grid-cols-2 items-center">
             <div className="text-white">
               <Reveal>
@@ -151,18 +151,36 @@ function Home() {
             </div>
 
             <Reveal direction="right" delay={200} className="relative">
-              <img
-                src={truckImg}
-                alt="Aspire Removals & Transport branded moving truck"
-                width={1600}
-                height={1200}
-                className="w-full h-auto object-contain drop-shadow-2xl"
-                fetchPriority="high"
-              />
+              <div className="overflow-hidden rounded-[2rem] ring-1 ring-white/10 shadow-2xl">
+                <img
+                  src={truckImg}
+                  alt="Aspire Removals & Transport branded moving truck"
+                  width={1600}
+                  height={1200}
+                  className="w-full h-auto object-cover"
+                  fetchPriority="high"
+                />
+              </div>
             </Reveal>
           </div>
         </div>
+
+        {/* Wave divider */}
+        <div className="relative -mb-px leading-[0]" aria-hidden>
+          <svg
+            className="block w-full h-[80px] md:h-[110px]"
+            viewBox="0 0 1440 110"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0,70 C240,110 480,10 720,40 C960,70 1200,110 1440,50 L1440,110 L0,110 Z"
+              fill="var(--color-background)"
+            />
+          </svg>
+        </div>
       </section>
+
 
 
       {/* SERVICES OVERVIEW */}
