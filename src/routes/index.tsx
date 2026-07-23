@@ -199,12 +199,8 @@ function Home() {
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[...SERVICES, { ...STORAGE_SERVICE, short: "Clean, secure short and long-term storage.", slug: "storage" as const }].slice(0, 6).map((s, i) => {
+          {TOP_SERVICES.map((s, i) => {
             const Icon = s.icon;
-            const isStorage = s.slug === "storage";
-            const linkProps = isStorage
-              ? { to: "/contact" as const }
-              : ({ to: "/services/$slug" as const, params: { slug: s.slug } } as const);
             return (
               <Reveal key={s.slug} delay={i * 60}>
                 <article className="group h-full flex flex-col rounded-2xl bg-card border border-border p-7 card-lift shadow-soft">
@@ -214,7 +210,8 @@ function Home() {
                   <h3 className="mt-5 text-xl font-semibold text-navy">{s.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground flex-1">{s.short}</p>
                   <Link
-                    {...linkProps}
+                    to="/services/$slug"
+                    params={{ slug: s.slug }}
                     className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2 transition-all"
                   >
                     Read more <ArrowRight className="h-4 w-4" />
