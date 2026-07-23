@@ -14,8 +14,8 @@ import {
   Home as HomeIcon,
   Sparkles,
 } from "lucide-react";
-import truckImg from "@/assets/hero-truck.jpg";
-import { SERVICES, STORAGE_SERVICE, SITE } from "@/lib/site";
+import truckAsset from "@/assets/hero-truck.png.asset.json";
+import { TOP_SERVICES, SITE } from "@/lib/site";
 import { Reveal } from "@/components/site/Reveal";
 import { CTASection } from "@/components/site/CTASection";
 
