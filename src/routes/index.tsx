@@ -153,7 +153,7 @@ function Home() {
             <Reveal direction="right" delay={200} className="relative">
               <div className="overflow-hidden rounded-[2rem] ring-1 ring-white/10 shadow-2xl">
                 <img
-                  src={truckImg}
+                  src={truckAsset.url}
                   alt="Aspire Removals & Transport branded moving truck"
                   width={1600}
                   height={1200}
