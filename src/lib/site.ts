@@ -5,6 +5,9 @@ import {
   Sofa,
   Warehouse,
   Truck,
+  Wrench,
+  Globe2,
+  Boxes,
   type LucideIcon,
 } from "lucide-react";
 
@@ -22,15 +25,8 @@ export const SITE = {
   ],
 };
 
-export type ServiceSlug =
-  | "house-removals"
-  | "office-relocation"
-  | "packing-services"
-  | "furniture-transport"
-  | "additional-transport";
-
 export interface Service {
-  slug: ServiceSlug;
+  slug: string;
   title: string;
   short: string;
   description: string;
@@ -40,141 +36,241 @@ export interface Service {
   faqs: { q: string; a: string }[];
 }
 
+function svc(
+  slug: string,
+  title: string,
+  short: string,
+  description: string,
+  icon: LucideIcon,
+  benefits: string[],
+  process: { title: string; text: string }[],
+  faqs: { q: string; a: string }[],
+): Service {
+  return { slug, title, short, description, icon, benefits, process, faqs };
+}
+
+const defaultProcess = [
+  { title: "Enquire", text: "Tell us what you need and we'll respond the same day." },
+  { title: "Plan", text: "We agree scope, timing and a clear fixed price up front." },
+  { title: "Execute", text: "Uniformed crews handle the job with care and precision." },
+  { title: "Sign-off", text: "We only leave once you're completely satisfied." },
+];
+
+const defaultFaqs = [
+  { q: "Are you fully insured?", a: "Yes — every job includes Goods-in-Transit and Public Liability cover." },
+  { q: "How quickly can you book me in?", a: "Most jobs can be scheduled within a few days; short-notice slots are often available." },
+  { q: "Do you cover the whole UK?", a: "Yes, we operate nationwide from our London base." },
+];
+
 export const SERVICES: Service[] = [
-  {
-    slug: "house-removals",
-    title: "House Removals",
-    short: "Effortless home moves, handled end-to-end.",
-    description:
-      "From single rooms to five-bedroom houses, our uniformed crews plan, pack and move your home with care and precision anywhere in the UK.",
-    icon: Home,
-    benefits: [
+  svc(
+    "home-removals",
+    "Home Removals",
+    "Effortless home moves, handled end-to-end.",
+    "From studios to five-bedroom houses, our uniformed crews plan, pack and move your home with care anywhere in the UK.",
+    Home,
+    [
       "Free in-home or video survey",
       "Uniformed, DBS-checked crews",
       "Blankets, straps & floor protection included",
       "Comprehensive goods-in-transit cover",
     ],
-    process: [
-      { title: "Survey & Quote", text: "We assess volume, access and timing to give you a clear fixed price." },
-      { title: "Pack & Protect", text: "Optional full-pack service with quality materials and inventory labelling." },
-      { title: "Load & Transport", text: "Modern fleet with GPS tracking and secure loading protocols." },
-      { title: "Unload & Settle", text: "Furniture placed room-by-room and reassembled ready to enjoy." },
-    ],
-    faqs: [
-      { q: "How far in advance should I book?", a: "We recommend 2–4 weeks for weekends and month-ends, but we often accommodate short-notice moves." },
-      { q: "Do you dismantle furniture?", a: "Yes — beds, wardrobes and tables are dismantled and reassembled at no extra cost." },
-      { q: "Is my move insured?", a: "Every move includes Goods-in-Transit and Public Liability cover as standard." },
-    ],
-  },
-  {
-    slug: "office-relocation",
-    title: "Office Relocation",
-    short: "Move your business with zero downtime.",
-    description:
-      "Weekend and out-of-hours commercial moves for offices, studios and retail, with IT decommission, crate hire and secure inventory tracking.",
-    icon: Building2,
-    benefits: [
-      "Out-of-hours & weekend moves",
-      "IT decommission & recommission",
-      "Crate hire and colour-coded floor plans",
-      "Dedicated project manager",
-    ],
-    process: [
-      { title: "Site Survey", text: "We audit both premises, access routes and IT infrastructure." },
-      { title: "Project Plan", text: "A detailed schedule, floor plan and crate distribution timeline." },
-      { title: "Relocation", text: "Crews move overnight or over the weekend to protect trading hours." },
-      { title: "Set-Up & Sign-Off", text: "Workstations rebuilt, tested and signed off before Monday morning." },
-    ],
-    faqs: [
-      { q: "Can you move outside working hours?", a: "Yes — most commercial moves happen overnight or across a weekend." },
-      { q: "Do you handle IT equipment?", a: "Our team decommissions, transports and reconnects workstations, servers and displays." },
-      { q: "Do you offer storage between sites?", a: "Yes, secure short and long-term storage is available." },
-    ],
-  },
-  {
-    slug: "packing-services",
-    title: "Packing Services",
-    short: "Museum-grade packing for every item.",
-    description:
-      "Full, part or fragile-only packing services using premium double-wall boxes, acid-free tissue and custom crating for antiques and artwork.",
-    icon: Package,
-    benefits: [
-      "Full, part or fragile-only options",
+    defaultProcess,
+    defaultFaqs,
+  ),
+  svc(
+    "packaging",
+    "Packaging",
+    "Professional packing and premium materials.",
+    "Full, part or fragile-only packing using premium double-wall boxes, acid-free tissue and custom crating for antiques and artwork.",
+    Package,
+    [
       "Premium double-wall cartons",
       "Custom crating for art & antiques",
       "Detailed inventory & labelling",
+      "Free carton collection after your move",
     ],
-    process: [
-      { title: "Materials Delivered", text: "Boxes and materials delivered ahead of your move day." },
-      { title: "Systematic Packing", text: "Room-by-room packing with photographic inventory." },
-      { title: "Safe Transit", text: "Everything strapped, blanketed and secured in-vehicle." },
-      { title: "Unpack (Optional)", text: "We unpack and remove all cartons the same day." },
+    defaultProcess,
+    defaultFaqs,
+  ),
+  svc(
+    "assembly-disassembly",
+    "Assembly & Disassembly",
+    "Furniture taken apart and rebuilt with care.",
+    "Beds, wardrobes, desks and flat-pack furniture professionally dismantled at collection and rebuilt at delivery — tools, hardware and know-how included.",
+    Wrench,
+    [
+      "Beds, wardrobes and modular units",
+      "Flat-pack assembly at destination",
+      "All tools and fixings supplied",
+      "Photographic inventory of hardware",
     ],
-    faqs: [
-      { q: "Can I just pack fragile items?", a: "Absolutely — many clients pack general items and leave the fragiles to us." },
-      { q: "Do you take the boxes away?", a: "Yes, we return to collect all used cartons free of charge." },
-      { q: "What about valuables?", a: "High-value items are inventoried separately and can be individually insured." },
+    defaultProcess,
+    defaultFaqs,
+  ),
+  svc(
+    "storage-services",
+    "Storage Services",
+    "Clean, secure, monitored self-storage.",
+    "Short and long-term storage in a clean, alarmed facility with 24/7 CCTV — ideal for between-move gaps, downsizing or long-term overflow.",
+    Warehouse,
+    [
+      "24/7 CCTV & alarmed facility",
+      "Flexible weekly or monthly terms",
+      "Container, room or pallet options",
+      "Collection & delivery included",
     ],
-  },
-  {
-    slug: "furniture-transport",
-    title: "Furniture Transport",
-    short: "Single items, deliveries & collections.",
-    description:
-      "One-item, one-price furniture transport across the UK — perfect for online marketplace purchases, showroom deliveries and studio collections.",
-    icon: Sofa,
-    benefits: [
-      "Nationwide same-week slots",
-      "Two-person delivery to any room",
+    defaultProcess,
+    defaultFaqs,
+  ),
+  svc(
+    "international-removals",
+    "International Removals",
+    "Door-to-door European and worldwide moves.",
+    "Full-service international relocation with export packing, customs paperwork and door-to-door delivery by road, sea or air.",
+    Globe2,
+    [
+      "Road, sea and air freight options",
+      "Export-grade packing & crating",
+      "Customs documentation handled",
+      "Door-to-door tracked delivery",
+    ],
+    defaultProcess,
+    defaultFaqs,
+  ),
+  svc(
+    "man-and-van",
+    "Man & Van Services",
+    "Flexible hourly transport with a helping hand.",
+    "Perfect for single items, small moves and marketplace pickups — a friendly driver plus a large van, priced by the hour with no hidden extras.",
+    Truck,
+    [
+      "Hourly and fixed-price options",
+      "Same-day slots in London",
+      "Two-person crew available",
       "Fully insured & tracked",
-      "Assembly available on request",
     ],
-    process: [
-      { title: "Book Online", text: "Send us dimensions and postcodes for an instant estimate." },
-      { title: "Collection", text: "We collect from seller, showroom or storage." },
-      { title: "Delivery", text: "Placed in the room of your choice with packaging removal." },
-      { title: "Assembly", text: "Optional flat-pack and reassembly service." },
+    defaultProcess,
+    defaultFaqs,
+  ),
+
+  // ---- Sub-services (full pages, reached from navbar & Home Removals) ----
+  svc(
+    "domestic-removals",
+    "Domestic Removals",
+    "UK house moves, done properly.",
+    "Local and long-distance domestic house moves anywhere in the UK, with the same fully-insured, uniformed crews on every job.",
+    Home,
+    [
+      "Local and nationwide coverage",
+      "Fixed-price quotes with no hidden fees",
+      "Blankets, straps & floor protection",
+      "Reassembly at your new home",
     ],
-    faqs: [
-      { q: "Do you offer same-day delivery?", a: "Same-day is available in Greater London subject to crew availability." },
-      { q: "Can you deliver upstairs?", a: "Yes — two-person crews are standard so stairs and lifts are no problem." },
-      { q: "Is my item insured in transit?", a: "Every job carries Goods-in-Transit cover up to £25,000 as standard." },
+    defaultProcess,
+    defaultFaqs,
+  ),
+  svc(
+    "business-removals",
+    "Business Removals",
+    "Move your business with zero downtime.",
+    "Weekend and out-of-hours commercial moves for offices, studios and retail — IT decommission, crate hire and a dedicated project manager included.",
+    Building2,
+    [
+      "Out-of-hours & weekend moves",
+      "IT decommission & recommission",
+      "Crate hire and colour-coded plans",
+      "Dedicated project manager",
     ],
-  },
-  {
-    slug: "additional-transport",
-    title: "Additional Transport Services",
-    short: "Man & van, courier & pallet solutions.",
-    description:
-      "Ad-hoc transport for businesses and individuals: man-and-van, urgent courier runs, pallet distribution and inter-site logistics.",
-    icon: Truck,
-    benefits: [
-      "Hourly & fixed-price options",
-      "Urgent same-day dispatch",
-      "Pallet & bulk distribution",
-      "Regular contract routes",
+    defaultProcess,
+    defaultFaqs,
+  ),
+  svc(
+    "special-furniture",
+    "Special Furniture",
+    "Pianos, antiques and oversized pieces.",
+    "Specialist handling for pianos, antiques, sculpture, safes and oversized furniture — custom crating, protective materials and specialist equipment.",
+    Sofa,
+    [
+      "Pianos, safes & oversized pieces",
+      "Custom crating and blanket-wrap",
+      "Stair-climbing and hoisting equipment",
+      "High-value item insurance available",
     ],
-    process: [
-      { title: "Enquire", text: "Share job details and preferred timing." },
-      { title: "Confirm", text: "We confirm a driver, vehicle and price." },
-      { title: "Collect", text: "Punctual collection with proof of pickup." },
-      { title: "Deliver", text: "Signed proof of delivery and photo confirmation." },
+    defaultProcess,
+    defaultFaqs,
+  ),
+  svc(
+    "packing-services",
+    "Packing Services",
+    "Museum-grade packing for every item.",
+    "Full, part or fragile-only packing services delivered by trained packers using premium materials and detailed inventory.",
+    Boxes,
+    [
+      "Full, part or fragile-only options",
+      "Room-by-room photographic inventory",
+      "Premium double-wall cartons",
+      "Unpack service available",
     ],
-    faqs: [
-      { q: "How quickly can you dispatch?", a: "Same-day slots are usually available with 2–3 hours notice in London." },
-      { q: "Do you handle multi-drop routes?", a: "Yes — we run multi-drop and contract routes across the UK." },
-      { q: "Can I book recurring collections?", a: "We support weekly and monthly contract logistics for businesses." },
-    ],
-  },
+    defaultProcess,
+    defaultFaqs,
+  ),
 ];
 
 export const SERVICE_BY_SLUG: Record<string, Service> = Object.fromEntries(
   SERVICES.map((s) => [s.slug, s]),
 );
 
-export const STORAGE_SERVICE = {
-  slug: "storage",
-  title: "Storage Solutions",
-  short: "Clean, secure, monitored self-storage.",
-  icon: Warehouse,
+// Top-level services shown on the Home page and Services index.
+export const TOP_SERVICE_SLUGS = [
+  "home-removals",
+  "packaging",
+  "assembly-disassembly",
+  "storage-services",
+  "international-removals",
+  "man-and-van",
+] as const;
+
+export const TOP_SERVICES: Service[] = TOP_SERVICE_SLUGS.map(
+  (slug) => SERVICE_BY_SLUG[slug],
+);
+
+// Navbar structure for the Services dropdown (with optional sub-menus).
+export type NavServiceChild = {
+  label: string;
+  to: string; // resolved href for navigation
 };
+
+export type NavServiceItem = {
+  label: string;
+  to: string;
+  children?: NavServiceChild[];
+};
+
+export const NAV_SERVICES: NavServiceItem[] = [
+  {
+    label: "Home Removals",
+    to: "/services/home-removals",
+    children: [
+      { label: "Domestic Removals", to: "/services/domestic-removals" },
+      { label: "International Removals", to: "/services/international-removals" },
+      { label: "Business Removals", to: "/services/business-removals" },
+      { label: "Special Furniture", to: "/services/special-furniture" },
+    ],
+  },
+  {
+    label: "Packaging",
+    to: "/services/packaging",
+    children: [
+      { label: "Packing Services", to: "/services/packing-services" },
+      { label: "Package Material", to: "/products" },
+    ],
+  },
+  { label: "Assembly & Disassembly", to: "/services/assembly-disassembly" },
+  { label: "Storage Services", to: "/services/storage-services" },
+  { label: "International Removals", to: "/services/international-removals" },
+  { label: "Man & Van Services", to: "/services/man-and-van" },
+];
+
+// Backwards compat for any legacy imports.
+export const STORAGE_SERVICE = SERVICE_BY_SLUG["storage-services"];
