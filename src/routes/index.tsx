@@ -143,7 +143,7 @@ function Home() {
                 </Link>
                 <Link
                   to="/quote"
-                  className="inline-flex items-center justify-center rounded-md border border-white/60 hover:border-white bg-transparent px-8 py-3.5 text-sm font-semibold text-white hover:bg-white/5 transition-colors"
+                  className="inline-flex items-center justify-center rounded-md bg-accent hover:bg-accent/90 px-8 py-3.5 text-sm font-semibold text-accent-foreground btn-glow-accent transition-colors"
                 >
                   Get a Quote
                 </Link>
