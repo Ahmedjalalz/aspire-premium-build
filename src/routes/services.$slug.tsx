@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
 import { SERVICE_BY_SLUG, SERVICES, type Service } from "@/lib/site";
+import { SERVICE_IMAGES } from "@/lib/service-images";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { CTASection } from "@/components/site/CTASection";
@@ -34,6 +35,7 @@ export const Route = createFileRoute("/services/$slug")({
 
 function ServiceDetail() {
   const s = Route.useLoaderData() as Service;
+  const img = SERVICE_IMAGES[s.slug];
   return (
     <>
       <PageHero eyebrow="Service" title={s.title} subtitle={s.description}>
@@ -52,6 +54,24 @@ function ServiceDetail() {
           </Link>
         </div>
       </PageHero>
+
+      {/* Service image */}
+      {img && (
+        <section className="container-page mt-14">
+          <Reveal>
+            <div className="overflow-hidden rounded-3xl ring-1 ring-border shadow-lift">
+              <img
+                src={img}
+                alt={s.title}
+                width={1600}
+                height={1000}
+                className="w-full h-[280px] md:h-[440px] object-cover transition-transform duration-[1200ms] ease-out hover:scale-105"
+              />
+            </div>
+          </Reveal>
+        </section>
+      )}
+
 
       {/* Benefits */}
       <section className="container-page mt-20">
