@@ -349,7 +349,57 @@ function Home() {
         </div>
       </section>
 
+      {/* GALLERY */}
+      <section className="container-page mt-28">
+        <div className="max-w-2xl">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Our work</p>
+            <h2 className="mt-3 text-3xl md:text-4xl text-navy">
+              A glimpse inside every Aspire move
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              From delicate packing to nationwide transport — real moments from jobs we've delivered
+              for families and businesses across the UK.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px]">
+          {GALLERY_IMAGES.map((g, i) => {
+            const spans = [
+              "sm:col-span-2 sm:row-span-2",
+              "",
+              "",
+              "lg:row-span-2",
+              "",
+              "sm:col-span-2",
+              "",
+              "",
+              "",
+              "sm:col-span-2 lg:col-span-2",
+            ];
+            return (
+              <Reveal key={g.src} delay={i * 40} className={`group relative overflow-hidden rounded-2xl shadow-soft ${spans[i] ?? ""}`}>
+                <Link to="/services/$slug" params={{ slug: g.slug }} className="block h-full w-full">
+                  <img
+                    src={g.src}
+                    alt={g.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+                  <span className="absolute left-4 bottom-3 right-4 text-sm font-semibold text-white translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    {g.alt}
+                  </span>
+                </Link>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
       <CTASection />
+
 
       {/* CONTACT PREVIEW */}
       <section className="container-page my-24">
