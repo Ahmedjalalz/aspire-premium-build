@@ -40,7 +40,7 @@ const SECTIONS = [
   { h: "Legal basis", p: "We rely on your consent, the performance of a contract with you and our legitimate business interests as lawful bases for processing your personal data." },
   { h: "Sharing", p: "We share limited data with trusted partners (payment processors, insurance underwriters, logistics partners) only where necessary to deliver your move." },
   { h: "Retention", p: "We keep quote and booking records for up to seven years to meet UK accounting and insurance requirements." },
-  { h: "Your rights", p: "You have the right to access, correct, delete or object to the processing of your personal data. To exercise any of these rights, contact hello@aspireremovals.co.uk." },
+  { h: "Your rights", p: "You have the right to access, correct, delete or object to the processing of your personal data. To exercise any of these rights, contact info@aspireremovals.co.uk." },
   { h: "Cookies", p: "Our website uses essential cookies to function and optional analytics cookies to help us improve the experience. You can control non-essential cookies through your browser settings." },
-  { h: "Contact", p: "For any privacy-related question, contact us at hello@aspireremovals.co.uk or by post to our head office listed on the Contact page." },
+  { h: "Contact", p: "For any privacy-related question, contact us at info@aspireremovals.co.uk or by post to our head office listed on the Contact page." },
 ];
