@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import truckAsset from "@/assets/hero-truck.png.asset.json";
 import { TOP_SERVICES, SITE } from "@/lib/site";
+import { SERVICE_IMAGES, GALLERY_IMAGES } from "@/lib/service-images";
 import { Reveal } from "@/components/site/Reveal";
 import { CTASection } from "@/components/site/CTASection";
 
@@ -200,23 +201,35 @@ function Home() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {TOP_SERVICES.map((s, i) => {
-            const Icon = s.icon;
+            const img = SERVICE_IMAGES[s.slug];
             return (
               <Reveal key={s.slug} delay={i * 60}>
-                <article className="group h-full flex flex-col rounded-2xl bg-card border border-border p-7 card-lift shadow-soft">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl gradient-brand-soft text-primary">
-                    <Icon className="h-6 w-6" />
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: s.slug }}
+                  className="group block h-full overflow-hidden rounded-2xl bg-card border border-border shadow-soft card-lift"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={img}
+                      alt={s.title}
+                      loading="lazy"
+                      width={1200}
+                      height={800}
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/10 to-transparent" />
+                    <h3 className="absolute left-5 bottom-4 right-5 text-xl font-semibold text-white drop-shadow">
+                      {s.title}
+                    </h3>
                   </div>
-                  <h3 className="mt-5 text-xl font-semibold text-navy">{s.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground flex-1">{s.short}</p>
-                  <Link
-                    to="/services/$slug"
-                    params={{ slug: s.slug }}
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2 transition-all"
-                  >
-                    Read more <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </article>
+                  <div className="p-6">
+                    <p className="text-sm text-muted-foreground">{s.short}</p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+                      Read more <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </Link>
               </Reveal>
             );
           })}
@@ -336,7 +349,57 @@ function Home() {
         </div>
       </section>
 
+      {/* GALLERY */}
+      <section className="container-page mt-28">
+        <div className="max-w-2xl">
+          <Reveal>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Our work</p>
+            <h2 className="mt-3 text-3xl md:text-4xl text-navy">
+              A glimpse inside every Aspire move
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              From delicate packing to nationwide transport — real moments from jobs we've delivered
+              for families and businesses across the UK.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px]">
+          {GALLERY_IMAGES.map((g, i) => {
+            const spans = [
+              "sm:col-span-2 sm:row-span-2",
+              "",
+              "",
+              "lg:row-span-2",
+              "",
+              "sm:col-span-2",
+              "",
+              "",
+              "",
+              "sm:col-span-2 lg:col-span-2",
+            ];
+            return (
+              <Reveal key={g.src} delay={i * 40} className={`group relative overflow-hidden rounded-2xl shadow-soft ${spans[i] ?? ""}`}>
+                <Link to="/services/$slug" params={{ slug: g.slug }} className="block h-full w-full">
+                  <img
+                    src={g.src}
+                    alt={g.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+                  <span className="absolute left-4 bottom-3 right-4 text-sm font-semibold text-white translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    {g.alt}
+                  </span>
+                </Link>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
       <CTASection />
+
 
       {/* CONTACT PREVIEW */}
       <section className="container-page my-24">

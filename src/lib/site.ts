@@ -16,7 +16,7 @@ export const SITE = {
   short: "Aspire Removals",
   tagline: "Trust Us Take You Home",
   phone: "07493 732371",
-  email: "hello@aspireremovals.co.uk",
+  email: "info@aspireremovals.co.uk",
   address: "167 Henley Avenue, Sutton, SM3 9SD",
   hours: [
     { d: "Monday – Friday", h: "07:00 – 19:00" },
