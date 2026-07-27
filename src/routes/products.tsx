@@ -1,14 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import boxesImg from "@/assets/products/boxes.jpg";
-import wardrobeImg from "@/assets/products/wardrobe.jpg";
-import booksImg from "@/assets/products/books.jpg";
-import bubbleImg from "@/assets/products/bubble.jpg";
-import tissueImg from "@/assets/products/tissue.jpg";
-import tapeImg from "@/assets/products/tape.jpg";
-import coversImg from "@/assets/products/covers.jpg";
-import floorImg from "@/assets/products/floor.jpg";
+import largeBox from "@/assets/products/large-box.jpg";
+import smallBox from "@/assets/products/small-box.jpg";
+import fragileTape from "@/assets/products/fragile-tape.jpg";
+import brownTape from "@/assets/products/brown-tape.jpg";
+import bubbleWrap from "@/assets/products/bubble-wrap.jpg";
+import shrinkWrap from "@/assets/products/shrink-wrap.jpg";
+import kitchenPaper from "@/assets/products/kitchen-paper.jpg";
+import wardrobeBox from "@/assets/products/wardrobe-box.jpg";
+import shoesProtector from "@/assets/products/shoes-protector.jpg";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/products")({
       {
         name: "description",
         content:
-          "Premium packing products and moving materials — boxes, wrapping, tape, protective covers and more. Request a quote.",
+          "Premium packing products and moving materials — boxes, tape, bubble wrap, shrink wrap and more. Request a quote.",
       },
       { property: "og:title", content: "Moving Products | Aspire Removals" },
       { property: "og:description", content: "Premium packing products and moving materials — request a quote." },
@@ -29,14 +30,15 @@ export const Route = createFileRoute("/products")({
 });
 
 const PRODUCTS = [
-  { img: boxesImg, title: "Standard Moving Boxes", desc: "Double-wall cartons in small, medium and large — the everyday workhorse." },
-  { img: wardrobeImg, title: "Wardrobe Boxes", desc: "Tall boxes with a built-in hanging rail to move clothes on their hangers." },
-  { img: booksImg, title: "Book & Wine Cartons", desc: "Heavy-duty small boxes for dense items like books, vinyl and bottles." },
-  { img: bubbleImg, title: "Bubble Wrap Rolls", desc: "Premium bubble wrap for glassware, ceramics, screens and artwork." },
-  { img: tissueImg, title: "Acid-Free Tissue", desc: "For fine china, silverware and delicate fabrics." },
-  { img: tapeImg, title: "Packing Tape & Dispensers", desc: "Low-noise tape and ergonomic dispensers for fast, secure boxing." },
-  { img: coversImg, title: "Sofa & Mattress Covers", desc: "Fitted covers to keep upholstery clean in transit and in storage." },
-  { img: floorImg, title: "Floor & Corner Protection", desc: "Floor runners and corner guards to protect your home during the move." },
+  { img: largeBox, title: "Large Boxes", desc: "Spacious double-wall cartons for bedding, cushions and lightweight bulky items." },
+  { img: smallBox, title: "Small Boxes", desc: "Heavy-duty small boxes ideal for books, kitchenware and dense items." },
+  { img: fragileTape, title: "Fragile Tape", desc: "Bold red 'Fragile' printed tape to clearly mark delicate cartons." },
+  { img: brownTape, title: "Brown Tape", desc: "Strong low-noise brown parcel tape for fast, secure box sealing." },
+  { img: bubbleWrap, title: "Bubble Wraps", desc: "Premium cushioned bubble wrap rolls for glassware, screens and artwork." },
+  { img: shrinkWrap, title: "Shrink Wrap", desc: "Clear stretch film to protect sofas, mattresses and drawers during transit." },
+  { img: kitchenPaper, title: "Kitchen Paper", desc: "Soft, clean packing paper for wrapping china, glassware and fragile items." },
+  { img: wardrobeBox, title: "Wardrobe Moving Box", desc: "Tall boxes with a built-in hanging rail so clothes move on their hangers." },
+  { img: shoesProtector, title: "Shoes Protector", desc: "Clear protective bags to keep pairs of shoes clean, dry and together." },
 ];
 
 function Products() {
@@ -49,7 +51,7 @@ function Products() {
       />
 
       <section className="container-page mt-20">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((p, i) => (
             <Reveal key={p.title} delay={i * 40}>
               <article className="h-full flex flex-col rounded-2xl bg-card border border-border overflow-hidden card-lift shadow-soft">
@@ -60,7 +62,7 @@ function Products() {
                     width={1024}
                     height={1024}
                     loading="lazy"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                   />
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
