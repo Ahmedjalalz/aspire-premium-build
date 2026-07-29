@@ -1,5 +1,3 @@
-import logoAsset from "@/assets/aspire-logo.png.asset.json";
-
 export function Logo({
   className = "h-10 w-auto",
   invert = false,
@@ -9,7 +7,7 @@ export function Logo({
 }) {
   return (
     <img
-      src={logoAsset.url}
+      src="/Aspire-nav-logo.png"
       alt="Aspire Removals & Transport"
       className={className}
       style={invert ? { filter: "brightness(0) invert(1)" } : undefined}

@@ -5,7 +5,6 @@ import {
   Users,
   Clock,
   Star,
-  CheckCircle2,
   Mail,
   Phone,
   MapPin,
@@ -14,11 +13,11 @@ import {
   Home as HomeIcon,
   Sparkles,
 } from "lucide-react";
-import truckAsset from "@/assets/hero-truck.png.asset.json";
 import { TOP_SERVICES, SITE } from "@/lib/site";
 import { SERVICE_IMAGES, GALLERY_IMAGES } from "@/lib/service-images";
 import { Reveal } from "@/components/site/Reveal";
 import { CTASection } from "@/components/site/CTASection";
+import { ContactForm } from "@/components/site/ContactForm";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -120,7 +119,7 @@ function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_60%,rgba(4,20,35,0.7),transparent_65%)]" />
         </div>
 
-        <div className="container-page relative pt-32 md:pt-36 pb-24 md:pb-32">
+        <div className="container-page relative pt-28 md:pt-32 pb-24 md:pb-32">
           <div className="grid gap-10 lg:grid-cols-2 items-center">
             <div className="text-white">
               <Reveal>
@@ -154,7 +153,7 @@ function Home() {
             <Reveal direction="right" delay={200} className="relative">
               <div className="overflow-hidden rounded-[2rem] ring-1 ring-white/10 shadow-2xl">
                 <img
-                  src={truckAsset.url}
+                  src="/Hero-Section-Image.png"
                   alt="Aspire Removals & Transport branded moving truck"
                   width={1600}
                   height={1200}
@@ -458,7 +457,7 @@ function Home() {
           </Reveal>
 
           <Reveal direction="right">
-            <QuickContactForm />
+            <ContactForm />
           </Reveal>
         </div>
       </section>
@@ -466,59 +465,3 @@ function Home() {
   );
 }
 
-function QuickContactForm() {
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        const f = e.currentTarget as HTMLFormElement;
-        f.reset();
-        alert("Thanks — we'll be in touch within one business hour.");
-      }}
-      className="rounded-3xl bg-card border border-border p-7 md:p-9 shadow-soft"
-      aria-label="Quick contact form"
-    >
-      <h3 className="text-xl font-semibold text-navy">Send us a message</h3>
-      <p className="mt-1 text-sm text-muted-foreground">We reply within one business hour.</p>
-      <div className="mt-6 grid gap-4">
-        <Field label="Full name" name="name" required />
-        <Field label="Email" name="email" type="email" required />
-        <Field label="Phone" name="phone" type="tel" />
-        <Field label="How can we help?" name="message" as="textarea" required />
-      </div>
-      <button
-        type="submit"
-        className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground btn-glow"
-      >
-        Send message <CheckCircle2 className="h-4 w-4" />
-      </button>
-    </form>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  as,
-  required,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  as?: "textarea";
-  required?: boolean;
-}) {
-  const cls =
-    "mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors";
-  return (
-    <label className="block text-sm font-medium text-navy">
-      {label} {required && <span className="text-accent">*</span>}
-      {as === "textarea" ? (
-        <textarea name={name} required={required} rows={4} className={cls} />
-      ) : (
-        <input name={name} type={type} required={required} className={cls} />
-      )}
-    </label>
-  );
-}

@@ -12,7 +12,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative gradient-brand pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden">
+    <section className="relative gradient-brand pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 opacity-40">
         <div className="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-secondary/40 blur-3xl animate-float-blob" />
         <div className="absolute -bottom-40 -right-20 h-[28rem] w-[28rem] rounded-full bg-accent/25 blur-3xl animate-float-blob" style={{ animationDelay: "-6s" }} />

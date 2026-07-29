@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
+import { sendEmail } from "@/lib/send-email-client";
 import { CheckCircle2, ShieldCheck } from "lucide-react";
 import { SERVICES } from "@/lib/site";
 import { useState } from "react";
@@ -11,7 +12,7 @@ export const Route = createFileRoute("/quote")({
       { title: "Get a Free Quote | Aspire Removals & Transport" },
       { name: "description", content: "Request a fast, transparent, no-obligation moving quote from Aspire Removals & Transport." },
       { property: "og:title", content: "Get a Free Quote | Aspire Removals" },
-      { property: "og:description", content: "Fast, transparent moving quote — replied to within one business hour." },
+      { property: "og:description", content: "Fast, transparent moving quote — replied to within 24 hours." },
       { property: "og:url", content: "/quote" },
     ],
     links: [{ rel: "canonical", href: "/quote" }],
@@ -21,13 +22,15 @@ export const Route = createFileRoute("/quote")({
 
 function Quote() {
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "pending">("idle");
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <>
       <PageHero
         eyebrow="Get a Quote"
         title={<>Your fixed-price moving quote — in minutes</>}
-        subtitle="Tell us about your move. We'll respond with a transparent, no-obligation quote within one business hour."
+        subtitle="Tell us about your move. We'll respond with a transparent, no-obligation quote within 24 hours."
       />
 
       <section className="container-page mt-16 mb-24 grid lg:grid-cols-[1.4fr_1fr] gap-10">
@@ -39,15 +42,43 @@ function Quote() {
               </div>
               <h2 className="mt-5 text-2xl font-semibold text-navy">Request received</h2>
               <p className="mt-2 text-muted-foreground">
-                Thanks — a move coordinator will be in touch within one business hour.
+                Thanks — a move coordinator will be in touch within 24 hours.
               </p>
             </div>
           ) : (
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                setSubmitted(true);
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                setStatus("pending");
+                setError(null);
+
+                const form = e.currentTarget as HTMLFormElement;
+                const formData = new FormData(form);
+
+                try {
+                  await sendEmail({
+                    type: "quote",
+                    name: formData.get("name")?.toString().trim() ?? "",
+                    email: formData.get("email")?.toString().trim() ?? "",
+                    phone: formData.get("phone")?.toString().trim() ?? "",
+                    message: formData.get("message")?.toString().trim() ?? "",
+                    details: {
+                      subject: formData.get("subject")?.toString().trim() ?? "",
+                      pickup: formData.get("pickup")?.toString().trim() ?? "",
+                      destination: formData.get("destination")?.toString().trim() ?? "",
+                      date: formData.get("date")?.toString().trim() ?? "",
+                      property: formData.get("property")?.toString().trim() ?? "",
+                      bedrooms: formData.get("bedrooms")?.toString().trim() ?? "",
+                      service: formData.get("service")?.toString().trim() ?? "",
+                    },
+                  });
+                  form.reset();
+                  setSubmitted(true);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                } catch (err) {
+                  setStatus("idle");
+                  setError(err instanceof Error ? err.message : "Unable to send quote request. Please try again.");
+                }
               }}
               className="rounded-3xl bg-card border border-border p-7 md:p-10 shadow-soft"
             >
@@ -98,10 +129,12 @@ function Quote() {
 
               <button
                 type="submit"
-                className="mt-8 w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-base font-semibold text-primary-foreground btn-glow"
+                disabled={status === "pending"}
+                className="mt-8 w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-base font-semibold text-primary-foreground btn-glow disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Submit quote request
+                {status === "pending" ? "Sending..." : "Submit quote request"}
               </button>
+              {error && <p className="mt-4 text-sm text-destructive text-center">{error}</p>}
               <p className="mt-3 text-xs text-muted-foreground text-center">
                 By submitting, you agree to our privacy policy. We never share your details.
               </p>

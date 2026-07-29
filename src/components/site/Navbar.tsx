@@ -43,9 +43,9 @@ export function Navbar() {
           : "bg-transparent",
       )}
     >
-      <div className="container-page flex h-[104px] items-center justify-between gap-4">
+      <div className="container-page flex h-16 md:h-20 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2 shrink-0" aria-label="Aspire Removals home">
-          <Logo className="h-20 md:h-24 w-auto" invert={!solid} />
+          <Logo className="h-10 md:h-12 w-auto" invert={!solid} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
